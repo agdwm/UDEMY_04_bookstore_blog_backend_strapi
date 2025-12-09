@@ -1,0 +1,6 @@
+onlyBuiltDependencies:
+  - "@swc/core"
+  - core-js-pure
+  - esbuild
+  - sharp
+minimumReleaseAge: 1440
