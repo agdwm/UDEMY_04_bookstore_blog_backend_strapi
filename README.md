@@ -1,6 +1,6 @@
 # Backend Strapi - Bookstore & Blog CMS
 
-Backend API REST construido con **Strapi v5.31.2** para gestionar contenido de libros, posts de blog y usuarios. Actúa como CMS headless para la aplicación frontend Next.js.
+Backend API REST construido con **Strapi v5.31.2** para gestionar contenido de libros, posts de blog y usuarios. Actúa como CMS headless para la aplicación frontend _Next.js_.
 
 ## 📋 Descripción del Proyecto
 
@@ -12,14 +12,20 @@ Este backend es el sistema de gestión de contenidos para una aplicación de tie
 - **Almacenamiento de Imágenes**: Integración con Cloudinary para subida y gestión de media
 - **Base de Datos**: PostgreSQL para persistencia de datos
 
+## 🔗 Repositorio Complementario
+
+**Frontend**: [React Next Vercel](https://github.com/agdwm/React_Next_Vercel) - Aplicación frontend que consume este backend
+
 ## 🛠️ Tecnologías Utilizadas
 
 ### Core Framework
+
 - **Strapi v5.31.2** - CMS headless y generador de APIs REST
 - **Node.js** - v20.x - v24.x
 - **TypeScript** - Tipado estático
 
 ### Dependencias principales
+
 - **PostgreSQL (pg 8.8.0)** - Base de datos relacional
 - **React 18** - Para el panel admin de Strapi
 - **React Router DOM 6** - Enrutamiento en admin
@@ -65,6 +71,7 @@ backend_strapi/
 ## 🚀 Inicio Rápido
 
 ### Requisitos Previos
+
 - **Node.js**: v20.x o superior
 - **npm** o **pnpm**: v6.0.0 o superior
 - **PostgreSQL**: Base de datos configurada
@@ -72,11 +79,13 @@ backend_strapi/
 ### Instalación
 
 1. **Clonar el repositorio y navegar al backend**:
+
 ```bash
 cd backend_strapi
 ```
 
 2. **Instalar dependencias**:
+
 ```bash
 npm install
 # o con pnpm
@@ -84,7 +93,8 @@ pnpm install
 ```
 
 3. **Configurar variables de entorno**:
-Crear archivo `.env` en la raíz del proyecto:
+   Crear archivo `.env` en la raíz del proyecto:
+
 ```env
 # Database
 DATABASE_CLIENT=postgres
@@ -109,35 +119,45 @@ CLOUDINARY_SECRET=your_cloudinary_secret
 ### Comandos Disponibles
 
 - **Desarrollo**:
+
 ```bash
 npm run dev
 # o
 npm run develop
 ```
+
 Inicia Strapi en modo desarrollo con auto-recarga.
 
 - **Producción**:
+
 ```bash
 npm start
 ```
+
 Inicia Strapi en modo producción.
 
 - **Build**:
+
 ```bash
 npm run build
 ```
+
 Construye el panel admin.
 
 - **Console**:
+
 ```bash
 npm run console
 ```
+
 Abre una consola interactiva.
 
 - **Actualizar Strapi**:
+
 ```bash
 npm run upgrade
 ```
+
 Actualiza Strapi a la última versión.
 
 ## 📚 Endpoints de API
@@ -145,6 +165,7 @@ Actualiza Strapi a la última versión.
 Una vez iniciado el servidor (por defecto en `http://localhost:1337`):
 
 ### Libros
+
 - `GET /api/books` - Obtener todos los libros
 - `GET /api/books/:id` - Obtener un libro específico
 - `POST /api/books` - Crear un nuevo libro (requiere autenticación)
@@ -152,6 +173,7 @@ Una vez iniciado el servidor (por defecto en `http://localhost:1337`):
 - `DELETE /api/books/:id` - Eliminar un libro (requiere autenticación)
 
 ### Posts
+
 - `GET /api/posts` - Obtener todos los posts
 - `GET /api/posts/:id` - Obtener un post específico
 - `POST /api/posts` - Crear un nuevo post (requiere autenticación)
@@ -159,6 +181,7 @@ Una vez iniciado el servidor (por defecto en `http://localhost:1337`):
 - `DELETE /api/posts/:id` - Eliminar un post (requiere autenticación)
 
 ### Autenticación
+
 - `POST /api/auth/local/register` - Registrar nuevo usuario
 - `POST /api/auth/local` - Login de usuario
 - `GET /api/users/me` - Obtener datos del usuario autenticado
@@ -168,6 +191,7 @@ Una vez iniciado el servidor (por defecto en `http://localhost:1337`):
 Acceder al panel admin de Strapi en: `http://localhost:1337/admin`
 
 Aquí puedes:
+
 - Crear, editar y eliminar contenido (libros y posts)
 - Gestionar usuarios y permisos
 - Subir y gestionar media
@@ -179,6 +203,7 @@ Aquí puedes:
 El proyecto utiliza **PostgreSQL**. Las migraciones se encuentran en `database/migrations/`.
 
 Para resetear la base de datos:
+
 ```bash
 npm run strapi migrate:reset
 ```
@@ -188,12 +213,13 @@ npm run strapi migrate:reset
 Strapi soporta múltiples opciones de despliegue:
 
 - **Strapi Cloud** (Recomendado):
+
 ```bash
 npm run deploy
 ```
 
 - **Vercel, Heroku, Railway, etc.**:
-Consulta la [documentación de deployment](https://docs.strapi.io/dev-docs/deployment)
+  Consulta la [documentación de deployment](https://docs.strapi.io/dev-docs/deployment)
 
 ## 📖 Documentación y Recursos
 
