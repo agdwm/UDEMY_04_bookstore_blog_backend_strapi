@@ -234,4 +234,11 @@ Este proyecto está bajo la licencia especificada en el archivo `license.txt`.
 
 ---
 
+## 👨‍💻 Autor
+
+Proyecto desarrollado como parte del curso Udemy de Next.js:
+[React JS con TypeScript y Next.js Curso Desarrollo FullStack](https://www.udemy.com/course/curso-react-js/)
+
+---
+
 **Backend desarrollado con Strapi v5.31.2** | [Documentación de Strapi](https://strapi.io)
