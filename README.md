@@ -14,7 +14,7 @@ Este backend es el sistema de gestión de contenidos para una aplicación de tie
 
 ## 🔗 Repositorio Complementario
 
-**Frontend**: [React Next Vercel](https://github.com/agdwm/React_Next_Vercel) - Aplicación frontend que consume este backend
+**Frontend**: [UDEMY_04_bookstore_blog_frontend_nextjs](https://github.com/agdwm/UDEMY_04_bookstore_blog_frontend_nextjs) - Aplicación frontend que consume este backend
 
 ## 🛠️ Tecnologías Utilizadas
 
