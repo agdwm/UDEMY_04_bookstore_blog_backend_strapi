@@ -1,61 +1,211 @@
-# 🚀 Getting started with Strapi
+# Backend Strapi - Bookstore & Blog CMS
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+Backend API REST construido con **Strapi v5.31.2** para gestionar contenido de libros, posts de blog y usuarios. Actúa como CMS headless para la aplicación frontend Next.js.
 
-### `develop`
+## 📋 Descripción del Proyecto
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+Este backend es el sistema de gestión de contenidos para una aplicación de tienda de libros e blog. Proporciona APIs REST para:
+
+- **Gestión de Libros**: CRUD de libros con precios, stock, descripción rica e imágenes
+- **Gestión de Posts**: Publicación de artículos de blog con contenido enriquecido
+- **Autenticación**: Gestión de usuarios con el plugin de permisos
+- **Almacenamiento de Imágenes**: Integración con Cloudinary para subida y gestión de media
+- **Base de Datos**: PostgreSQL para persistencia de datos
+
+## 🛠️ Tecnologías Utilizadas
+
+### Core Framework
+- **Strapi v5.31.2** - CMS headless y generador de APIs REST
+- **Node.js** - v20.x - v24.x
+- **TypeScript** - Tipado estático
+
+### Dependencias principales
+- **PostgreSQL (pg 8.8.0)** - Base de datos relacional
+- **React 18** - Para el panel admin de Strapi
+- **React Router DOM 6** - Enrutamiento en admin
+- **Styled Components 6** - Estilos en el panel admin
+- **Cloudinary** - Proveedor de almacenamiento para archivos media
+- **Strapi Plugins**:
+  - `@strapi/plugin-cloud` - Cloud deployment
+  - `@strapi/plugin-users-permissions` - Gestión de permisos y usuarios
+
+## 📦 Estructura del Proyecto
 
 ```
+backend_strapi/
+├── src/
+│   ├── api/
+│   │   ├── book/                 # API de libros
+│   │   │   ├── controllers/
+│   │   │   ├── routes/
+│   │   │   ├── services/
+│   │   │   └── content-types/
+│   │   └── post/                 # API de posts
+│   │       ├── controllers/
+│   │       ├── routes/
+│   │       ├── services/
+│   │       └── content-types/
+│   ├── admin/                    # Customizaciones del panel admin
+│   └── extensions/
+├── config/
+│   ├── admin.ts                  # Config panel admin
+│   ├── api.ts                    # Config API REST
+│   ├── database.ts               # Config base de datos
+│   ├── middlewares.ts
+│   ├── plugins.ts
+│   └── server.ts
+├── public/
+│   └── uploads/                  # Almacenamiento local de uploads
+├── database/
+│   └── migrations/               # Migraciones de BD
+└── types/
+    └── generated/                # Tipos TypeScript auto-generados
+```
+
+## 🚀 Inicio Rápido
+
+### Requisitos Previos
+- **Node.js**: v20.x o superior
+- **npm** o **pnpm**: v6.0.0 o superior
+- **PostgreSQL**: Base de datos configurada
+
+### Instalación
+
+1. **Clonar el repositorio y navegar al backend**:
+```bash
+cd backend_strapi
+```
+
+2. **Instalar dependencias**:
+```bash
+npm install
+# o con pnpm
+pnpm install
+```
+
+3. **Configurar variables de entorno**:
+Crear archivo `.env` en la raíz del proyecto:
+```env
+# Database
+DATABASE_CLIENT=postgres
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_NAME=strapi_db
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=your_password
+
+# App
+APP_KEYS=your_app_keys
+API_TOKEN_SALT=your_token_salt
+ADMIN_JWT_SECRET=your_admin_secret
+JWT_SECRET=your_jwt_secret
+
+# Cloudinary (Opcional)
+CLOUDINARY_NAME=your_cloudinary_name
+CLOUDINARY_KEY=your_cloudinary_key
+CLOUDINARY_SECRET=your_cloudinary_secret
+```
+
+### Comandos Disponibles
+
+- **Desarrollo**:
+```bash
+npm run dev
+# o
 npm run develop
-# or
-yarn develop
 ```
+Inicia Strapi en modo desarrollo con auto-recarga.
 
-### `start`
-
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
-
+- **Producción**:
+```bash
+npm start
 ```
-npm run start
-# or
-yarn start
-```
+Inicia Strapi en modo producción.
 
-### `build`
-
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
-
-```
+- **Build**:
+```bash
 npm run build
-# or
-yarn build
+```
+Construye el panel admin.
+
+- **Console**:
+```bash
+npm run console
+```
+Abre una consola interactiva.
+
+- **Actualizar Strapi**:
+```bash
+npm run upgrade
+```
+Actualiza Strapi a la última versión.
+
+## 📚 Endpoints de API
+
+Una vez iniciado el servidor (por defecto en `http://localhost:1337`):
+
+### Libros
+- `GET /api/books` - Obtener todos los libros
+- `GET /api/books/:id` - Obtener un libro específico
+- `POST /api/books` - Crear un nuevo libro (requiere autenticación)
+- `PUT /api/books/:id` - Actualizar un libro (requiere autenticación)
+- `DELETE /api/books/:id` - Eliminar un libro (requiere autenticación)
+
+### Posts
+- `GET /api/posts` - Obtener todos los posts
+- `GET /api/posts/:id` - Obtener un post específico
+- `POST /api/posts` - Crear un nuevo post (requiere autenticación)
+- `PUT /api/posts/:id` - Actualizar un post (requiere autenticación)
+- `DELETE /api/posts/:id` - Eliminar un post (requiere autenticación)
+
+### Autenticación
+- `POST /api/auth/local/register` - Registrar nuevo usuario
+- `POST /api/auth/local` - Login de usuario
+- `GET /api/users/me` - Obtener datos del usuario autenticado
+
+## 🔑 Panel Admin
+
+Acceder al panel admin de Strapi en: `http://localhost:1337/admin`
+
+Aquí puedes:
+- Crear, editar y eliminar contenido (libros y posts)
+- Gestionar usuarios y permisos
+- Subir y gestionar media
+- Configurar plugins y extensiones
+- Monitorear la aplicación
+
+## 🗄️ Base de Datos
+
+El proyecto utiliza **PostgreSQL**. Las migraciones se encuentran en `database/migrations/`.
+
+Para resetear la base de datos:
+```bash
+npm run strapi migrate:reset
 ```
 
-## ⚙️ Deployment
+## 🚢 Despliegue
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+Strapi soporta múltiples opciones de despliegue:
 
+- **Strapi Cloud** (Recomendado):
+```bash
+npm run deploy
 ```
-yarn strapi deploy
-```
 
-## 📚 Learn more
+- **Vercel, Heroku, Railway, etc.**:
+Consulta la [documentación de deployment](https://docs.strapi.io/dev-docs/deployment)
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+## 📖 Documentación y Recursos
 
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+- [Documentación Oficial de Strapi](https://docs.strapi.io)
+- [Guía de API REST](https://docs.strapi.io/dev-docs/rest-api/introduction)
+- [Guía de Plugins](https://docs.strapi.io/dev-docs/plugins/introduction)
+- [Tutorials](https://strapi.io/tutorials)
 
-## ✨ Community
+## 📝 Licencia
 
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+Este proyecto está bajo la licencia especificada en el archivo `license.txt`.
 
 ---
 
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+**Backend desarrollado con Strapi v5.31.2** | [Documentación de Strapi](https://strapi.io)
